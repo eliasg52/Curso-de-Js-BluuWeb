@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Add Event Listener</title>
+    <link
+      rel="stylesheet"
+      href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+      integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T"
+      crossorigin="anonymous"
+    />
+  </head>
+  <body>
+    <div class="container py-5 bg-warning">
+      <h1>Contador</h1>
+      <button class="btn btn-info">Aumentar</button>
+      <button class="btn btn-danger">Disminuir</button>
+      <h4 class="my-5">Contador: <span>0</span></h4>
+    </div>
+
+    <script>
+      const botonAumentar = document.querySelector('.btn-info');
+      const span = document.querySelector('span');
+      let contador = 0;
+
+      /*             METODO CON ADDEVENTLISTENER NORMAL
+  const botonDisminuir = document.querySelector('.btn-danger');
+
+      botonAumentar.addEventListener('click', () => {
+        contador++;
+        span.textContent = contador;
+      });
+
+      botonDisminuir.addEventListener('click', () => {
+        if (contador > 0) {
+          contador--;
+          span.textContent = contador;
+        }
+      }); */
+
+      /* CON EVENT DELEGATION */
+      const container = document.querySelector('.container');
+
+      container.addEventListener('click', (e) => {
+        // console.log(e.target);
+        // console.log(e.target.classList.contains('btn-info'));
+        if (e.target.classList.contains('btn-info')) {
+          contador++;
+          span.textContent = contador;
+        }
+
+        if (e.target.classList.contains('btn-danger') && contador > 0) {
+          contador--;
+          span.textContent = contador;
+        }
+      });
+    </script>
+  </body>
+</html>
